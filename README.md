@@ -5,9 +5,9 @@ translated from https://github.com/SimonWaldherr/ColorConverter.js
 
 ##about
 
-License:    GO  
-Version: 0.0.1  
-Date:  03.2014  
+License:   MIT  
+Version: 0.0.2  
+Date:  04.2014  
 
 ##download
 

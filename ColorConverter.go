@@ -1,9 +1,16 @@
-package main
+package colorconverter
 
-import (
-	"fmt"
-	"math"
-)
+import "math"
+import "strconv"
+
+/*
+	RGB2HSL
+	HSL2RGB
+	CMYK2RGB
+	Hex2RGB
+	RGB2Hex
+	HSV2RGB
+*/
 
 func RGB2HSL(r int, g int, b int) (int, int, int) {
 	var rf, gf, bf, max, min, l, d, s, h float64
@@ -41,6 +48,56 @@ func RGB2HSL(r int, g int, b int) (int, int, int) {
 	return int(h * 60), int(s * 100), int(l * 100)
 }
 
+func HSL2RGB(h int, s int, l int) (int, int, int) {
+	var hf, sf, lf, vf, minf, svf, sixf, fractf, vsfractf, rf, gf, bf float64
+
+	hf = math.Max(math.Min(float64(int(h)), 360), 0) / 360
+	sf = math.Max(math.Min(float64(int(s)), 100), 0) / 100
+	lf = math.Max(math.Min(float64(int(l)), 100), 0) / 100
+
+	if lf <= 0.5 {
+		vf = lf * (1 + sf)
+	} else {
+		vf = lf + sf - sf - 1*sf
+	}
+	if vf == 0 {
+		return int(0), int(0), int(0)
+	}
+	minf = 2*lf - vf
+	svf = (vf - minf) / vf
+	hf = 6 * hf
+	sixf = float64(int(hf))
+	fractf = hf - sixf
+	vsfractf = vf * svf * fractf
+	switch sixf {
+	case 1:
+		rf = vf - vsfractf
+		gf = vf
+		bf = minf
+	case 2:
+		rf = minf
+		gf = vf
+		bf = minf + vsfractf
+	case 3:
+		rf = minf
+		gf = vf - vsfractf
+		bf = vf
+	case 4:
+		rf = minf + vsfractf
+		gf = minf
+		bf = vf
+	case 5:
+		rf = vf
+		gf = minf
+		bf = vf - vsfractf
+	default:
+		rf = vf
+		gf = minf + vsfractf
+		bf = minf
+	}
+	return int(rf * 255), int(gf * 255), int(bf * 255)
+}
+
 func CMYK2RGB(c int, m int, y int, k int) (int, int, int) {
 	var cf, mf, yf, kf, rf, gf, bf float64
 
@@ -53,6 +110,51 @@ func CMYK2RGB(c int, m int, y int, k int) (int, int, int) {
 	bf = (1 - yf*(1-kf) - kf)
 
 	return int(rf * 255), int(gf * 255), int(bf * 255)
+}
+
+func HEX2RGB(hex string) (int, int, int) {
+	var r, g, b int64
+	if hex[0:1] == "#" {
+		hex = hex[1:]
+	}
+	switch len(hex) {
+	case 2:
+		r, _ = strconv.ParseInt(hex, 16, 0)
+		g = r
+		b = r
+	case 3:
+		r, _ = strconv.ParseInt(hex[0:1], 16, 0)
+		g, _ = strconv.ParseInt(hex[1:2], 16, 0)
+		b, _ = strconv.ParseInt(hex[2:3], 16, 0)
+	case 6:
+		r, _ = strconv.ParseInt(hex[0:2], 16, 0)
+		g, _ = strconv.ParseInt(hex[2:4], 16, 0)
+		b, _ = strconv.ParseInt(hex[4:6], 16, 0)
+	default:
+		return -1, -1, -1
+	}
+	return int(r), int(g), int(b)
+}
+
+func RGB2HEX(r int, g int, b int) (string) {
+	var hexr, hexg, hexb string
+	r = int(math.Max(math.Min(float64(r), 255), 0))
+	g = int(math.Max(math.Min(float64(g), 255), 0))
+	b = int(math.Max(math.Min(float64(b), 255), 0))
+
+	hexr = strconv.FormatInt(int64(r), 16)
+	if r < 16 {
+		hexr = "0" + hexr
+	}
+	hexg = strconv.FormatInt(int64(g), 16)
+	if g < 16 {
+		hexg = "0" + hexg
+	}
+	hexb = strconv.FormatInt(int64(b), 16)
+	if b < 16 {
+		hexb = "0" + hexb
+	}
+	return hexr + hexg + hexb
 }
 
 func HSV2RGB(h int, s int, v int) (int, int, int) {
@@ -94,16 +196,4 @@ func HSV2RGB(h int, s int, v int) (int, int, int) {
 		b = q
 	}
 	return int(r * 255), int(g * 255), int(b * 255)
-}
-
-func main() {
-	fmt.Println(RGB2HSL(121, 167, 22))
-	fmt.Println(RGB2HSL(69, 209, 237))
-	fmt.Println(RGB2HSL(254, 207, 37))
-	fmt.Println(RGB2HSL(122, 167, 255))
-	fmt.Println(RGB2HSL(255, 255, 255))
-	fmt.Println(HSV2RGB(184, 71, 81))
-
-	fmt.Println(RGB2HSL(HSV2RGB(184, 71, 81)))
-	fmt.Println(RGB2HSL(CMYK2RGB(215, 55, 0, 20)))
 }

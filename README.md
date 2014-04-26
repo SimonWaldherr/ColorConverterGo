@@ -1,18 +1,29 @@
 #ColorConverter.go
 
-Convert between RGB, HSL and HEX color defining with these GO functions under MIT-License  
+Convert between RGB, HSL, HSV, CMYK and HEX color defining with these GO functions under MIT-License  
 translated from https://github.com/SimonWaldherr/ColorConverter.js
 
 ##about
 
 License:   MIT  
-Version: 0.0.2  
+Version: 0.0.3  
 Date:  04.2014  
 
 ##download
 
 * git: ```git@github.com:SimonWaldherr/ColorConverter.go.git```
 * [zip](https://github.com/SimonWaldherr/ColorConverter.go/archive/master.zip) from GitHub
+
+##matrix
+
+  . | RGB | HSL | HSV | YUV | Hex | CMYK
+----|-----|-----|-----|-----|-----|-----
+RGB |  .  |  X  |  .  |  .  |  X  |  .
+HSL |  X  |  .  |  .  |  .  |  .  |  .
+HSV |  X  |  .  |  .  |  .  |  .  |  .
+YUV |  .  |  .  |  .  |  .  |  .  |  .
+Hex |  X  |  .  |  .  |  .  |  .  |  .
+CMYK|  X  |  .  |  .  |  .  |  .  |  .
 
 ##contact
 

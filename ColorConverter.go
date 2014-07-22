@@ -6,13 +6,17 @@ import "strconv"
 /*
 	RGB2HSL
 	HSL2RGB
+	RGB2CMYK
 	CMYK2RGB
 	Hex2RGB
 	RGB2Hex
 	HSV2RGB
+	HSL2CMYK
+	Hex2CMYK
+	HSV2CMYK
 */
 
-func RGB2HSL(r int, g int, b int) (int, int, int) {
+func RGB2HSL(r, g, b int) (int, int, int) {
 	var rf, gf, bf, max, min, l, d, s, h float64
 
 	rf = math.Max(math.Min(float64(r)/255, 1), 0)
@@ -48,7 +52,7 @@ func RGB2HSL(r int, g int, b int) (int, int, int) {
 	return int(h * 60), int(s * 100), int(l * 100)
 }
 
-func HSL2RGB(h int, s int, l int) (int, int, int) {
+func HSL2RGB(h, s, l int) (int, int, int) {
 	var hf, sf, lf, vf, minf, svf, sixf, fractf, vsfractf, rf, gf, bf float64
 
 	hf = math.Max(math.Min(float64(int(h)), 360), 0) / 360
@@ -98,6 +102,27 @@ func HSL2RGB(h int, s int, l int) (int, int, int) {
 	return int(rf * 255), int(gf * 255), int(bf * 255)
 }
 
+func RGB2CMYK(r, g, b int) (int, int, int, int) {
+	var rf, gf, bf, cf, mf, yf, kf float64
+
+	rf = math.Max(math.Min(float64(r)/255, 1), 0)
+	gf = math.Max(math.Min(float64(g)/255, 1), 0)
+	bf = math.Max(math.Min(float64(b)/255, 1), 0)
+	cf = 1 - rf
+	mf = 1 - gf
+	yf = 1 - bf
+	kf = 1
+	if rf != 0 && gf != 0 && bf != 0 {
+		kf = math.Min(cf, math.Min(mf, yf))
+		cf = (cf - kf) / (1 - kf)
+		mf = (mf - kf) / (1 - kf)
+		yf = (yf - kf) / (1 - kf)
+	} else {
+		kf = 1
+	}
+	return int(cf * 255), int(mf * 255), int(yf * 255), int(kf * 255)
+}
+
 func CMYK2RGB(c int, m int, y int, k int) (int, int, int) {
 	var cf, mf, yf, kf, rf, gf, bf float64
 
@@ -136,7 +161,7 @@ func HEX2RGB(hex string) (int, int, int) {
 	return int(r), int(g), int(b)
 }
 
-func RGB2HEX(r int, g int, b int) (string) {
+func RGB2HEX(r, g, b int) (string) {
 	var hexr, hexg, hexb string
 	r = int(math.Max(math.Min(float64(r), 255), 0))
 	g = int(math.Max(math.Min(float64(g), 255), 0))
@@ -157,7 +182,7 @@ func RGB2HEX(r int, g int, b int) (string) {
 	return hexr + hexg + hexb
 }
 
-func HSV2RGB(h int, s int, v int) (int, int, int) {
+func HSV2RGB(h, s, v int) (int, int, int) {
 	var f, p, q, t, r, g, b, hf, sf, vf float64
 	var i int
 	hf = float64(h) / 360
@@ -196,4 +221,16 @@ func HSV2RGB(h int, s int, v int) (int, int, int) {
 		b = q
 	}
 	return int(r * 255), int(g * 255), int(b * 255)
+}
+
+func HSL2CMYK(h, s, l int) (int, int, int, int) {
+	return RGB2CMYK(HSL2RGB(h, s, l))
+}
+
+func HEX2CMYK(hex string) (int, int, int, int) {
+	return RGB2CMYK(HEX2RGB(hex))
+}
+
+func HSV2CMYK(h, s, v int) (int, int, int, int) {
+	return RGB2CMYK(HSV2RGB(h, s, v))
 }

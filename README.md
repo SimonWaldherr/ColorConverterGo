@@ -6,8 +6,8 @@ translated from https://github.com/SimonWaldherr/ColorConverter.js
 ##about
 
 License:   MIT  
-Version: 0.0.3  
-Date:  04.2014  
+Version: 0.0.4  
+Date:  07.2014  
 
 ##download
 
@@ -18,11 +18,11 @@ Date:  04.2014
 
   . | RGB | HSL | HSV | YUV | Hex | CMYK
 ----|-----|-----|-----|-----|-----|-----
-RGB |  .  |  X  |  .  |  .  |  X  |  .
-HSL |  X  |  .  |  .  |  .  |  .  |  .
-HSV |  X  |  .  |  .  |  .  |  .  |  .
+RGB |  .  |  X  |  .  |  .  |  X  |  X
+HSL |  X  |  .  |  .  |  .  |  .  |  X
+HSV |  X  |  .  |  .  |  .  |  .  |  X
 YUV |  .  |  .  |  .  |  .  |  .  |  .
-Hex |  X  |  .  |  .  |  .  |  .  |  .
+Hex |  X  |  .  |  .  |  .  |  .  |  X
 CMYK|  X  |  .  |  .  |  .  |  .  |  .
 
 ##contact

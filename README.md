@@ -18,12 +18,12 @@ Date:  07.2014
 
   . | RGB | HSL | HSV | YUV | Hex | CMYK
 ----|-----|-----|-----|-----|-----|-----
-RGB |  .  |  X  |  .  |  .  |  X  |  X
-HSL |  X  |  .  |  .  |  .  |  .  |  X
-HSV |  X  |  .  |  .  |  .  |  .  |  X
-YUV |  .  |  .  |  .  |  .  |  .  |  .
-Hex |  X  |  .  |  .  |  .  |  .  |  X
-CMYK|  X  |  .  |  .  |  .  |  .  |  .
+RGB |     |  X  |  .  |  X  |  X  |  X
+HSL |  X  |     |  .  |  .  |  .  |  X
+HSV |  X  |  .  |     |  .  |  .  |  X
+YUV |  .  |  .  |  .  |     |  .  |  .
+Hex |  X  |  .  |  .  |  .  |     |  X
+CMYK|  X  |  .  |  .  |  .  |  .  |   
 
 ##contact
 

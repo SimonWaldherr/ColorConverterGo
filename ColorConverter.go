@@ -182,6 +182,14 @@ func RGB2HEX(r, g, b int) (string) {
 	return hexr + hexg + hexb
 }
 
+func RGB2YUV(r, g, b int) (int, int, int) {
+	var y, u, v int
+	y = int(0.299 * float64(r) + 0.587 * float64(g) + 0.114 * float64(b))
+	u = int(((float64(b - y) * 0.493) + 111) / 222 * 255)
+	v = int(((float64(r - y) * 0.877) + 155) / 312 * 255)
+	return y, u, v
+}
+
 func HSV2RGB(h, s, v int) (int, int, int) {
 	var f, p, q, t, r, g, b, hf, sf, vf float64
 	var i int

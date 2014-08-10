@@ -24,6 +24,8 @@ func main() {
 	fmt.Println(color.HSV2RGB(184, 71, 81))
 	fmt.Print("HEX2RGB: ")
 	fmt.Println(color.HEX2RGB("#C3C3FF"))
+	fmt.Print("RGB2HEX(HEX2RGB): ")
+	fmt.Println(color.RGB2HEX(color.HEX2RGB("#ABC")))
 	fmt.Print("RGB2HEX: ")
 	fmt.Println(color.RGB2HEX(20, 60, 120))
 	fmt.Print("RGB2YUV: ")

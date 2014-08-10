@@ -148,9 +148,9 @@ func HEX2RGB(hex string) (int, int, int) {
 		g = r
 		b = r
 	case 3:
-		r, _ = strconv.ParseInt(hex[0:1], 16, 0)
-		g, _ = strconv.ParseInt(hex[1:2], 16, 0)
-		b, _ = strconv.ParseInt(hex[2:3], 16, 0)
+		r, _ = strconv.ParseInt(hex[0:1]+hex[0:1], 16, 0)
+		g, _ = strconv.ParseInt(hex[1:2]+hex[1:2], 16, 0)
+		b, _ = strconv.ParseInt(hex[2:3]+hex[2:3], 16, 0)
 	case 6:
 		r, _ = strconv.ParseInt(hex[0:2], 16, 0)
 		g, _ = strconv.ParseInt(hex[2:4], 16, 0)
@@ -161,7 +161,7 @@ func HEX2RGB(hex string) (int, int, int) {
 	return int(r), int(g), int(b)
 }
 
-func RGB2HEX(r, g, b int) (string) {
+func RGB2HEX(r, g, b int) string {
 	var hexr, hexg, hexb string
 	r = int(math.Max(math.Min(float64(r), 255), 0))
 	g = int(math.Max(math.Min(float64(g), 255), 0))
@@ -184,9 +184,9 @@ func RGB2HEX(r, g, b int) (string) {
 
 func RGB2YUV(r, g, b int) (int, int, int) {
 	var y, u, v int
-	y = int(0.299 * float64(r) + 0.587 * float64(g) + 0.114 * float64(b))
-	u = int(((float64(b - y) * 0.493) + 111) / 222 * 255)
-	v = int(((float64(r - y) * 0.877) + 155) / 312 * 255)
+	y = int(0.299*float64(r) + 0.587*float64(g) + 0.114*float64(b))
+	u = int(((float64(b-y) * 0.493) + 111) / 222 * 255)
+	v = int(((float64(r-y) * 0.877) + 155) / 312 * 255)
 	return y, u, v
 }
 

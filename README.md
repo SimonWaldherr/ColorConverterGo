@@ -6,7 +6,7 @@ translated from https://github.com/SimonWaldherr/ColorConverter.js
 ##about
 
 License:   MIT  
-Version: 0.0.4  
+Version: 0.0.5  
 Date:  07.2014  
 
 ##download

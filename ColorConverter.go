@@ -10,6 +10,7 @@ import "strconv"
 	CMYK2RGB
 	Hex2RGB
 	RGB2Hex
+	RGB2YUV
 	HSV2RGB
 	HSL2CMYK
 	Hex2CMYK

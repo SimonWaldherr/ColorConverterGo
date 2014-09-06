@@ -7,7 +7,7 @@ go:
   - tip
 
 script:
-    - go get github.com/SimonWaldherr/ColorConverterGo && go test -v .
+    - go test -v .
 
 notifications:
   email:

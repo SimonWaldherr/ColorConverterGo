@@ -16,7 +16,7 @@ Date:  09.2014
 
 ##download
 
-* go get github.com/SimonWaldherr/ColorConverterGo
+* ```go get github.com/SimonWaldherr/ColorConverterGo```
 * git: ```git@github.com:SimonWaldherr/ColorConverter.go.git```
 * [zip](https://github.com/SimonWaldherr/ColorConverter.go/archive/master.zip) from GitHub
 

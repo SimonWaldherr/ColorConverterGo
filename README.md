@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/SimonWaldherr/ColorConverterGo.svg?branch=master)](https://travis-ci.org/SimonWaldherr/ColorConverterGo)
 [![GoDoc](https://godoc.org/github.com/SimonWaldherr/ColorConverterGo?status.svg)](https://godoc.org/github.com/SimonWaldherr/ColorConverterGo)
+[![License MIT](http://img.shields.io/badge/license-MIT-red.svg)](http://opensource.org/licenses/MIT)
+[![Coverage Status](https://img.shields.io/coveralls/SimonWaldherr/ColorConverterGo.svg)](https://coveralls.io/r/SimonWaldherr/ColorConverterGo)
 [![Gittip donate button](http://img.shields.io/gittip/bevry.png)](https://www.gittip.com/SimonWaldherr/ "Donate weekly to this project using Gittip")
 [![Flattr donate button](https://raw.github.com/balupton/flattr-buttons/master/badge-89x18.gif)](https://flattr.com/submit/auto?user_id=SimonWaldherr&url=http%3A%2F%2Fgithub.com%2FSimonWaldherr%2FColorConverterGo "Donate monthly to this project using Flattr")
 
@@ -11,8 +13,8 @@ translated from https://github.com/SimonWaldherr/ColorConverter.js
 ##about
 
 License:   MIT  
-Version: 0.0.5  
-Date:  09.2014  
+Version: 0.0.6  
+Date:  10.2014  
 
 ##download
 

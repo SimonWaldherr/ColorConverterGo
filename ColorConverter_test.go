@@ -34,6 +34,36 @@ func Test_HSL2RGB(t *testing.T) {
 	}
 }
 
+func Test_HSL2RGB2(t *testing.T) {
+	h, s, l := 15, 30, 50
+	r, g, b := HSL2RGB(h, s, l)
+
+	t.Logf("HSL(%v, %v, %v) => RGB(%v, %v, %v)\n", h, s, l, r, g, b)
+	if (r != 165) || (g != 108) || (b != 89) {
+		t.Error("wrong values returned")
+	}
+}
+
+func Test_HSL2RGB3(t *testing.T) {
+	h, s, l := 50, 50, 50
+	r, g, b := HSL2RGB(h, s, l)
+
+	t.Logf("HSL(%v, %v, %v) => RGB(%v, %v, %v)\n", h, s, l, r, g, b)
+	if (r != 191) || (g != 170) || (b != 63) {
+		t.Error("wrong values returned")
+	}
+}
+
+func Test_HSV2CMYK(t *testing.T) {
+	h, s, v := 10, 20, 10
+	c, m, y, k := HSV2CMYK(h, s, v)
+
+	t.Logf("HSV(%v, %v, %v) => CMYK(%v, %v, %v, %v)\n", h, s, v, c, m, y, k)
+	if (c != 0) || (m != 40) || (y != 51) || (k != 230) {
+		t.Error("wrong values returned")
+	}
+}
+
 func Test_RGB2CMYK(t *testing.T) {
 	r, g, b := 10, 20, 200
 	c, m, y, k := RGB2CMYK(r, g, b)

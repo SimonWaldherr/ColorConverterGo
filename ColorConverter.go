@@ -1,7 +1,9 @@
 package colorconverter
 
-import "math"
-import "strconv"
+import (
+	"math"
+    "strconv"
+)
 
 /*
 	RGB2HSL

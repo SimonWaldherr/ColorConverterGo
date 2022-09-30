@@ -3,6 +3,7 @@ package colorconverter
 import (
 	"math"
     "strconv"
+    "image/color"
 )
 
 /*
@@ -106,6 +107,9 @@ func HSL2RGB(h, s, l int) (int, int, int) {
 }
 
 func RGB2CMYK(r, g, b int) (int, int, int, int) {
+	c, m, y, k := color.RGBToCMYK(uint8(r), uint8(g), uint8(b))
+	return int(c), int(m), int(y), int(k)
+	/*
 	var rf, gf, bf, cf, mf, yf, kf float64
 
 	rf = math.Max(math.Min(float64(r)/255, 1), 0)
@@ -115,18 +119,20 @@ func RGB2CMYK(r, g, b int) (int, int, int, int) {
 	mf = 1 - gf
 	yf = 1 - bf
 	kf = 1
-	if rf != 0 && gf != 0 && bf != 0 {
-		kf = math.Min(cf, math.Min(mf, yf))
-		cf = (cf - kf) / (1 - kf)
-		mf = (mf - kf) / (1 - kf)
-		yf = (yf - kf) / (1 - kf)
-	} else {
-		kf = 1
-	}
+		
+	kf = kf - math.Max(cf, math.Max(mf, yf))
+	cf = (cf - kf) / (1 - kf)
+	mf = (mf - kf) / (1 - kf)
+	yf = (yf - kf) / (1 - kf)
+
 	return int(cf * 255), int(mf * 255), int(yf * 255), int(kf * 255)
+	*/
 }
 
 func CMYK2RGB(c int, m int, y int, k int) (int, int, int) {
+	r, g, b := color.CMYKToRGB(uint8(c), uint8(m), uint8(y), uint8(k))
+	return int(r), int(g), int(b)
+	/*
 	var cf, mf, yf, kf, rf, gf, bf float64
 
 	cf = math.Max(math.Min(float64(c)/255, 1), 0)
@@ -138,6 +144,7 @@ func CMYK2RGB(c int, m int, y int, k int) (int, int, int) {
 	bf = (1 - yf*(1-kf) - kf)
 
 	return int(rf * 255), int(gf * 255), int(bf * 255)
+	*/
 }
 
 func HEX2RGB(hex string) (int, int, int) {
